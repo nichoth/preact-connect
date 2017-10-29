@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "start": "budo example/index.js --live --open -- -dv"
+  },
+  "peerDependencies": {
+    "preact": "^8.2.6"
+  },
+  "devDependencies": {
+    "budo": "^10.0.4",
+    "preact": "^8.2.6"
+  },
+  "dependencies": {
+    "xtend": "^4.0.1"
+  }
+}
