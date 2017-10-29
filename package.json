@@ -1,4 +1,11 @@
 {
+  "name": "@nichoth/preact-connect",
+  "description": "Observe view events and subscribe to state changes",
+  "version": "0.0.0",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
   "scripts": {
     "start": "budo example/index.js --live --open -- -dv"
   },
@@ -11,5 +18,15 @@
   },
   "dependencies": {
     "xtend": "^4.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nichoth/preact-connect.git"
+  },
+  "author": "nichoth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nichoth/preact-connect/issues"
+  },
+  "homepage": "https://github.com/nichoth/preact-connect#readme"
 }
