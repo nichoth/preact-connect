@@ -2,6 +2,10 @@
 
 Observe view events and subscribe to state changes
 
+## install
+
+    $ npm install @nichoth/preact-connect
+
 ## example
 
 ```js
