@@ -1,7 +1,7 @@
 {
   "name": "@nichoth/preact-connect",
   "description": "Observe view events and subscribe to state changes",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "directories": {
     "example": "example"
