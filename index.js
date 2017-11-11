@@ -1,4 +1,6 @@
-var { h, Component } = require('preact')
+var preact = require('preact')
+var Component = preact.Component
+var h = preact.h
 var xtend = require('xtend')
 
 function subscribe (state, View) {
