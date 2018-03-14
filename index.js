@@ -8,7 +8,7 @@ function subscribe (state, View) {
         return subscribe(state, _view)
     }
 
-    return class extends Component {
+    class Listener extends Component {
         constructor (props) {
             super(props)
             this.state = state()
@@ -29,6 +29,8 @@ function subscribe (state, View) {
             return h(View, xtend(props, state), props.children)
         }
     }
+
+    return Listener
 }
 
 function observe (bus, View) {
@@ -37,18 +39,13 @@ function observe (bus, View) {
     }
     return function Observed (props) {
         return h(View, xtend(props, {
-            emit: function _emit (eventName, data) {
-                if (data === undefined) return function (_data) {
-                    return _emit(eventName, _data)
-                }
-                return bus.emit(eventName, data)
-            }
+            emit: bus.emit.bind(bus)
         }), props.children)
     }
 }
 
-function connect (state, bus, view) {
-    return subscribe(state, observe(bus, view))
+function connect (opts) {
+    return subscribe(opts.state, observe(opts.bus, opts.view))
 }
 connect.subscribe = subscribe
 connect.observe = observe
