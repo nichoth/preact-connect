@@ -1,7 +1,8 @@
+var xtend = require('xtend')
+var Bus = require('@nichoth/events')
 var preact = require('preact')
 var Component = preact.Component
 var h = preact.h
-var xtend = require('xtend')
 
 function subscribe (state, View) {
     if (!View) return function (_view) {  // curry
@@ -45,7 +46,9 @@ function observe (bus, View) {
 }
 
 function connect (opts) {
-    return subscribe(opts.state, observe(opts.bus, opts.view))
+    var bus = opts.bus || Bus()
+    var _view = subscribe(opts.state, observe(opts.bus, opts.view))
+    return { bus, view: _view }
 }
 connect.subscribe = subscribe
 connect.observe = observe
