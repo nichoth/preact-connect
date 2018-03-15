@@ -45,9 +45,8 @@ function observe (bus, View) {
 }
 
 function connect (opts) {
-    var bus = opts.bus
     var _view = subscribe(opts.state, observe(opts.bus, opts.view))
-    return { bus, view: _view }
+    return _view
 }
 connect.subscribe = subscribe
 connect.observe = observe
