@@ -7,13 +7,12 @@
     "example": "example"
   },
   "scripts": {
-    "build": "mkdir -p dist && browserify index.js --standalone preactConnect --exclude preact --exclude @nicohth/events -t [ babelify --presets [ es2015 ] ] > dist/index.js",
+    "build": "mkdir -p dist && browserify index.js --standalone preactConnect --exclude preact -t [ babelify --presets [ es2015 ] ] > dist/index.js",
     "postversion": "git push && git push --tags && npm publish",
     "postinstall": "npm run build",
     "start": "budo example/index.js --live --open -- -dv"
   },
   "dependencies": {
-    "@nichoth/events": "^0.7.0",
     "xtend": "^4.0.1"
   },
   "peerDependencies": {

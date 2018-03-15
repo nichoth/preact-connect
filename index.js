@@ -1,5 +1,4 @@
 var xtend = require('xtend')
-var Bus = require('@nichoth/events')
 var preact = require('preact')
 var Component = preact.Component
 var h = preact.h
@@ -46,7 +45,7 @@ function observe (bus, View) {
 }
 
 function connect (opts) {
-    var bus = opts.bus || Bus()
+    var bus = opts.bus
     var _view = subscribe(opts.state, observe(opts.bus, opts.view))
     return { bus, view: _view }
 }
