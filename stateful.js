@@ -35,7 +35,6 @@ class Stateful extends Component {
     }
 
     render(props, state) {
-        console.log('here', props, state)
         var self = this
         return props.render({ state, call: function () {
             return self._call.apply(self, arguments)
