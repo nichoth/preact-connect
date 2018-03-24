@@ -10,7 +10,7 @@
     "build": "mkdir -p dist && browserify index.js --standalone preactConnect --exclude preact -t [ babelify --presets [ es2015 ] ] > dist/index.js",
     "build-stateful": "mkdir -p dist && browserify stateful.js --standalone preactConnect --exclude preact -t [ babelify --presets [ es2015 ] ] > dist/stateful.js",
     "postversion": "git push && git push --tags && npm publish",
-    "prepublish": "npm run build && npm run build-stateful",
+    "prepare": "npm run build && npm run build-stateful",
     "start": "budo example/index.js --live --open -- -dv",
     "start-stateful": "budo example/stateful.js --live --open -- -dv"
   },
