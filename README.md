@@ -1,6 +1,6 @@
 # preact connect
 
-Observe view events and subscribe to state changes
+Observe view events and subscribe to state changes. This expects the state pub/sub interface to be like [observ](https://github.com/Raynos/observ), and the event bus should be like a normal EventEmitter.
 
 ## install
 
