@@ -1,10 +1,10 @@
 var { h, render } = require('preact')
 var Bus = require('events').EventEmitter
 var bus = new Bus()
-var connect = require('../')
+var connect = require('../index')
 
 var state = State({ hello: 'world' })
-var view = connect.subscribe(state, connect.observe(bus, MyView))
+var _view = connect({ view: MyView, state: state, bus: bus })
 
 bus.on('hello', console.log.bind(console, 'hello event'))
 bus.on('hello', function (ev) {
@@ -12,7 +12,7 @@ bus.on('hello', function (ev) {
     state.set({ hello: ev.target.elements.hello.value })
 })
 
-render(h(view, {}, []), document.body)
+render(h(_view, {}, []), document.body)
 
 
 // ------------------------------

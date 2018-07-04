@@ -34,7 +34,21 @@ function subscribe (state, View) {
 }
 
 function observe (bus, View) {
-    var emit = bus.emit.bind(bus)
+    var fns = {}
+
+    // momoize the event handlers
+    function emit (evName, data) {
+        if (data === undefined) {
+            if (fns[evName]) return fns[evName]
+
+            fns[evName] = function (_data) {
+                return bus.emit(evName, _data)
+            }
+            return fns[evName]
+        }
+
+        return bus.emit(evName, data)
+    }
 
     return function ObservedComponent (props) {
         return h(View, xtend(props, {
@@ -47,8 +61,8 @@ function connect (opts) {
     var _view = subscribe(opts.state, observe(opts.bus, opts.view))
     return _view
 }
+
 connect.subscribe = subscribe
 connect.observe = observe
-
 module.exports = connect
 

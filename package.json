@@ -7,12 +7,11 @@
     "example": "example"
   },
   "scripts": {
-    "build": "mkdir -p dist && browserify index.js --standalone preactConnect --exclude preact -t [ babelify --presets [ es2015 ] ] > dist/index.js",
-    "build-stateful": "mkdir -p dist && browserify stateful.js --standalone preactConnect --exclude preact -t [ babelify --presets [ es2015 ] ] > dist/stateful.js",
-    "postversion": "git push && git push --tags && npm publish",
-    "prepare": "npm run build && npm run build-stateful",
     "start": "budo example/index.js --live --open -- -dv",
-    "start-stateful": "budo example/stateful.js --live --open -- -dv"
+    "build": "mkdir -p dist && browserify index.js --standalone preactConnect --exclude preact -t [ babelify --presets [ es2015 ] ] > dist/index.js",
+    "postversion": "git push && git push --tags && npm publish",
+    "prepare": "npm run build",
+    "test": "browserify test/index.js | tape-run"
   },
   "dependencies": {
     "xtend": "^4.0.1"
@@ -26,7 +25,9 @@
     "babelify": "^8.0.0",
     "browserify": "^16.1.1",
     "budo": "^10.0.4",
-    "preact": "^8.2.6"
+    "preact": "^8.2.6",
+    "tape": "^4.9.1",
+    "tape-run": "^4.0.0"
   },
   "repository": {
     "type": "git",
