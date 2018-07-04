@@ -10,12 +10,12 @@ Observe view events and subscribe to state changes. This expects the state pub/s
 
 ```js
 var { h, render } = require('preact')
-var connect = require('../')
 var Bus = require('events').EventEmitter
 var bus = new Bus()
-var state = State({ hello: 'world' })
+var connect = require('../index')
 
-var view = connect.subscribe(state, connect.observe(bus, MyView))
+var state = State({ hello: 'world' })
+var connectedView = connect({ view: MyView, state, bus })
 
 bus.on('hello', console.log.bind(console, 'hello event'))
 bus.on('hello', function (ev) {
@@ -23,7 +23,7 @@ bus.on('hello', function (ev) {
     state.set({ hello: ev.target.elements.hello.value })
 })
 
-render(h(view, {}, []), document.body)
+render(h(connectedView {}, []), document.body)
 
 
 // ------------------------------
@@ -50,3 +50,4 @@ function State (data) {
     return state
 }
 ```
+
