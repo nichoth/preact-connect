@@ -34,12 +34,11 @@ function subscribe (state, View) {
 }
 
 function observe (bus, View) {
-    if (!View) return function (_view) {  // curry
-        return observe(bus, _view)
-    }
-    return function Observed (props) {
+    var emit = bus.emit.bind(bus)
+
+    return function ObservedComponent (props) {
         return h(View, xtend(props, {
-            emit: bus.emit.bind(bus)
+            emit: emit
         }), props.children)
     }
 }
