@@ -9,6 +9,7 @@
   "scripts": {
     "start": "budo example/index.js --live --open -- -dv",
     "build": "mkdir -p dist && browserify index.js --standalone preactConnect --exclude preact -t [ babelify --presets [ es2015 ] ] > dist/index.js",
+    "preversion": "npm test",
     "postversion": "git push && git push --tags && npm publish",
     "prepare": "npm run build",
     "test": "browserify test/index.js | tape-run"
