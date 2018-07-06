@@ -34,20 +34,8 @@ function subscribe (state, View) {
 }
 
 function observe (bus, View) {
-    var fns = {}
-
-    // momoize the event handlers
-    function emit (evName, data) {
-        if (data === undefined) {
-            if (fns[evName]) return fns[evName]
-
-            fns[evName] = function (_data) {
-                return bus.emit(evName, _data)
-            }
-            return fns[evName]
-        }
-
-        return bus.emit(evName, data)
+    function emit () {
+        return bus.emit.apply(bus, arguments)
     }
 
     return function ObservedComponent (props) {
