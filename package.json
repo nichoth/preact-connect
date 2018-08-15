@@ -4,8 +4,14 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "directories": {
-    "example": "example"
+    "example": "example",
+    "test": "test"
   },
+  "keywords": [
+    "preact",
+    "events",
+    "connect"
+  ],
   "scripts": {
     "start": "budo example/index.js --live --open -- -dv",
     "build": "mkdir -p dist && browserify index.js --standalone preactConnect --exclude preact -t [ babelify --presets [ es2015 ] ] > dist/index.js",
