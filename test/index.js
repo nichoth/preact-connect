@@ -4,7 +4,7 @@ var Bus = require('events').EventEmitter
 var bus = new Bus()
 var connect = require('../index')
 
-test('momoize the event emitters', function (t) {
+test('preact connect', function (t) {
     t.plan(2)
     var state = State({ hello: 'world' })
     var connectedView = connect({ view: MyView, state: state, bus: bus })
@@ -22,20 +22,20 @@ test('momoize the event emitters', function (t) {
             h('button', { type: 'submit' }, ['hello'])
         ])
     }
+})
 
-    function State (data) {
-        var listener
+function State (data) {
+    var listener
 
-        function state (_listener) {
-            if (!_listener) return data
-            listener = _listener
-        }
-
-        state.set = function (_data) {
-            if (listener) listener(_data)
-        }
-        return state
+    function state (_listener) {
+        if (!_listener) return data
+        listener = _listener
     }
 
-})
+    state.set = function (_data) {
+        if (listener) listener(_data)
+    }
+    return state
+}
+
 

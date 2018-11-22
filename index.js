@@ -1,33 +1,30 @@
 var xtend = require('xtend')
+var inherits = require('inherits')
 var preact = require('preact')
 var Component = preact.Component
 var h = preact.h
 
 function subscribe (state, View) {
-    if (!View) return function (_view) {  // curry
-        return subscribe(state, _view)
+    function Listener () {
+        Component.apply(this, arguments)
+        this.state = state()
     }
 
-    class Listener extends Component {
-        constructor (props) {
-            super(props)
-            this.state = state()
-        }
+    inherits(Listener, Component)
 
-        componentDidMount () {
-            var self = this
-            this.stopListening = state(function onChange (data) {
-                self.setState(data)
-            })
-        }
+    Listener.prototype.componentDidMount = function () {
+        var self = this
+        this.stopListening = state(function onChange (data) {
+            self.setState(data)
+        })
+    }
 
-        componentWillUnmount () {
-            this.stopListening()
-        }
+    Listener.prototype.componentWillUnmount = function () {
+        this.stopListening()
+    }
 
-        render (props, state) {
-            return h(View, xtend(props, state), props.children)
-        }
+    Listener.prototype.render = function (props, state) {
+        return h(View, xtend(props, state), props.children)
     }
 
     return Listener

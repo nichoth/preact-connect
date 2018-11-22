@@ -2,7 +2,7 @@
   "name": "@nichoth/preact-connect",
   "description": "Observe view events and subscribe to state changes",
   "version": "1.0.1",
-  "main": "dist/index.js",
+  "main": "index.js",
   "directories": {
     "example": "example",
     "test": "test"
@@ -14,13 +14,12 @@
   ],
   "scripts": {
     "start": "budo example/index.js --live --open -- -dv",
-    "build": "mkdir -p dist && browserify index.js --standalone preactConnect --exclude preact -t [ babelify --presets [ es2015 ] ] > dist/index.js",
     "preversion": "npm test",
     "postversion": "git push && git push --tags && npm publish",
-    "prepare": "npm run build",
     "test": "browserify test/index.js | tape-run"
   },
   "dependencies": {
+    "inherits": "^2.0.3",
     "xtend": "^4.0.1"
   },
   "peerDependencies": {
